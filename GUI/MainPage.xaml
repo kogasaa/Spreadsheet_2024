@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- 
+    Author: Bingying Wang and Bingkun Han
+    Partner: Bingkun Han and Bingying Wang
+    Date: 03/03/2024
+    Course: CS 3500, University of Utah, School of Computing
+    Copyright: CS 3500 and Bingying - This work may not be copied for use in Academic Coursework.
+
+    Bingying Wang and Bingkun Han certify that we wrote this code from scratch and
+    did not copy it in part or whole from another source. All references used in the
+    completion of the assignments are cited in our README file.
+
+    File Contents:
+    This comment is associated with the MainPage.xaml file, related to the Spreadsheet GUI
+    in our project. The associated MainPage.xaml.cs implements all the methods and accomplishes
+    all the functions for our Spreadsheet GUI. The GUI supports features such as loading from and
+    saving to files, cell value change notifications, and undo/redo operations to provide
+    comprehensive spreadsheet functionalities. It implements interfaces for cell validation and
+    normalization to ensure consistency and correctness of cell names and contents.
+-->
+
+<!-- Root element of the content page, defining the UI structure for a page in a .NET MAUI app -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GUI.MainPage">
+
+
+    <ContentPage.MenuBarItems>
+        <!-- Menu bar items for "File" operations -->
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="New" Clicked="FileMenuNew" />
+            <MenuFlyoutItem Text="Open" Clicked="FileMenuOpenAsync" />
+            <MenuFlyoutItem Text="Save" Clicked="FileMenuSaveAsync" />
+            <MenuFlyoutItem Text="Help" Clicked="HelpWindowsPopUp" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+
+    <VerticalStackLayout x:Name="Entire">
+
+        <!-- A Place to put the currently selected cell "namd" and "value" and "Clear" button -->
+        <Border
+            StrokeThickness="2"
+            HeightRequest="40">
+            <HorizontalStackLayout>
+                <Label x:Name="selectedCell" Text="Selected Cell" WidthRequest="100" />
+                <Entry x:Name="selectedCellContent" Placeholder="Formula" WidthRequest="800" />
+                <Label x:Name="selectedCellValue" Text="Value" WidthRequest="100"/>
+                <Button Text="Clear" Clicked="OnClearButtonClick" WidthRequest="100"/>
+            </HorizontalStackLayout>
+        </Border>
+
+
+        <!-- the Grid of Spreadsheet GUI Cells and Top Labels -->
+        <ScrollView
+                    x:Name="Table"
+                    Orientation="Both"
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalScrollBarVisibility="Always"
+                    HeightRequest="500">
+            <HorizontalStackLayout>
+                <VerticalStackLayout x:Name="LeftLabels"  BackgroundColor="LightBlue"></VerticalStackLayout>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout x:Name="TopLabels" BackgroundColor="LightBlue"/>
+                    <VerticalStackLayout x:Name="Grid"        BackgroundColor="LightBlue"></VerticalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+
+</ContentPage>
